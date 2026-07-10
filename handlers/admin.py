@@ -638,10 +638,10 @@ def handle_sent_item(call):
     send_photo_message(chat_id, message_id, seller_text, keyboard)
     notify_admins_item_received(deal_id, user_id)
     buyer_text = f"""
-<tg-emoji emoji-id='5778672437122045013'>📦</tg-emoji> <b>ОЖИДАНИЕ ПОДТВЕРЖДЕНИЯ</b>
+<tg-emoji emoji-id='5449648985578945152'>📦</tg-emoji> <b>Ожидание подтверждения</b>
 
-📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Продавец:</b> @{users[deal['seller_id']]['username']}
+<tg-emoji emoji-id='5438334504122993220'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5402426498764280452'>👤</tg-emoji> <b>Продавец:</b> @{users[deal['seller_id']]['username']}
 
 <b>Продавец отправил товар поддержке.</b>
 <i>Администратор проверяет получение товара.</i>

@@ -294,12 +294,11 @@ def handle_admin_confirm_item(call):
 
     log_activity(user_id, 'Подтвердил получение товара от менеджера', deal_id)
     admin_text = f"""
-✅ <b>ТОВАР ПОДТВЕРЖДЁН</b>
-
-📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Продавец:</b> @{users[seller_id]['username']}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Покупатель:</b> @{users[buyer_id]['username']}
-<tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> <b>Сумма:</b> {deal['amount']} {deal['currency']}
+<tg-emoji emoji-id='5402426498764280452'>👤</tg-emoji> <b>Товар подтверждён</b>
+<tg-emoji emoji-id='5438334504122993220'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5422413610112549614'>👤</tg-emoji> <b>Продавец:</b> @{users[seller_id]['username']}
+<tg-emoji emoji-id='5422413610112549614'>👤</tg-emoji> <b>Покупатель:</b> @{users[buyer_id]['username']}
+<tg-emoji emoji-id='5404419114481507025'>💰</tg-emoji> <b>Сумма:</b> {deal['amount']} {deal['currency']}
 
 ✅ <b>Верификация продавца:</b> {'✅ Да' if is_user_verified(seller_id) else '❌ Нет'}
 
@@ -316,19 +315,19 @@ def handle_admin_confirm_item(call):
     )
     send_photo_message(chat_id, message_id, admin_text, keyboard)
     seller_text = f"""
-✅ <b>ТОВАР ПОДТВЕРЖДЁН</b>
+<tg-emoji emoji-id='5402426498764280452'>👤</tg-emoji> <b>Товар подтверждён</b>
 
-📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Покупатель:</b> @{users[buyer_id]['username']}
+<tg-emoji emoji-id='5438334504122993220'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5422413610112549614'>👤</tg-emoji> <b>Покупатель:</b> @{users[buyer_id]['username']}
 
 <b>Администратор подтвердил получение товара от менеджера.</b>
 <i>Ожидайте завершения сделки.</i>
 """
     buyer_text = f"""
-✅ <b>ТОВАР ПОДТВЕРЖДЁН</b>
+<tg-emoji emoji-id='5402426498764280452'>👤</tg-emoji> <b>Товар подтверждён</b>
 
-📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Продавец:</b> @{users[seller_id]['username']}
+<tg-emoji emoji-id='5438334504122993220'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5422413610112549614'>👤</tg-emoji> <b>Продавец:</b> @{users[seller_id]['username']}
 
 <b>Администратор подтвердил получение товара от менеджера.</b>
 <i>Ожидайте завершения сделки.</i>
@@ -358,12 +357,12 @@ def handle_admin_item_not_received(call):
     buyer_id = deal.get('buyer_id')
     log_activity(user_id, 'Отметил, что товар не получен от менеджера', deal_id)
     admin_text = f"""
-⚠️ <b>ТОВАР НЕ ПОЛУЧЕН</b>
+⚠️ <b>Товар не получен</b>
 
-📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Продавец:</b> @{users[seller_id]['username']}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Покупатель:</b> @{users[buyer_id]['username']}
-<tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> <b>Сумма:</b> {deal['amount']} {deal['currency']}
+<tg-emoji emoji-id='5438334504122993220'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5422413610112549614'>👤</tg-emoji> <b>Продавец:</b> @{users[seller_id]['username']}
+<tg-emoji emoji-id='5422413610112549614'>👤</tg-emoji> <b>Покупатель:</b> @{users[buyer_id]['username']}
+<tg-emoji emoji-id='5404419114481507025'>💰</tg-emoji> <b>Сумма:</b> {deal['amount']} {deal['currency']}
 
 <b>Товар не получен от менеджера.</b>
 <i>Свяжитесь с менеджером {MANAGER_USERNAME} для выяснения обстоятельств.</i>

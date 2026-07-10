@@ -2155,15 +2155,15 @@ def handle_message(message):
         else:
             _items_section = f"<b>Ссылка/Описание:</b> {description}"
         deal_text = f"""
-✅ <b>СДЕЛКА СОЗДАНА!</b>
+✅ <b>Сделка создана</b>
 
 📋 <b>ID сделки:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> <b>Сумма:</b> {deal_data['amount']} {deal_data['currency']}
+<tg-emoji emoji-id='5402426498764280452'>💰</tg-emoji> <b>Сумма:</b> {deal_data['amount']} {deal_data['currency']}
 
 📁 <b>Категория:</b> {deal_data.get('category', 'Товар')}
 
 {_items_section}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Продавец:</b> @{user['username']}
+<tg-emoji emoji-id='5258192778180984895'>👤</tg-emoji> <b>Продавец:</b> @{user['username']}
 
 ✅ <b>Верификация продавца:</b> {'✅ Да' if is_user_verified(user_id) else '❌ Нет'}
 
@@ -2202,7 +2202,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 ✅ <b>Верификация:</b> {'✅ Да' if is_user_verified(target_user_id) else '❌ Нет'}
 
 <b>Текущий баланс:</b>
-• <tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> Ton: {target_user['balance']['TON']}
+• <tg-emoji emoji-id='5265245148840745641'>⚡</tg-emoji> Ton: {target_user['balance']['TON']}
 • 🇷🇺 Rub: {target_user['balance']['RUB']}
 • 🇺🇸 Usd: {target_user['balance']['USD']}
 • 🇰🇿 Kzt: {target_user['balance']['KZT']}

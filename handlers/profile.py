@@ -151,7 +151,7 @@ def handle_select_item(call):
     # Запускаем проверку через 5 минут
     schedule_withdrawal_check(user_id, item_id)
     withdrawal_text = f"""
-📤 <b>ПОДТВЕРЖДЕНИЕ ВЫВОДА ТОВАРА</b>
+📤 <b>Подтверждение товара</b>
 
 <b>Товар ID:</b> <code>{item_id}</code>
 
@@ -184,7 +184,7 @@ def handle_confirm_withdraw(call):
     if success:
         log_activity(user_id, 'Запросил вывод товара', details=f'Товар ID: {item_id}')
         result_text = f"""
-✅ <b>ЗАПРОС НА ВЫВОД ТОВАРА ОТПРАВЛЕН</b>
+✅ <b>Запрос на вывод товара отправлен</b>
 
 <b>Товар ID:</b> <code>{item_id}</code>
 

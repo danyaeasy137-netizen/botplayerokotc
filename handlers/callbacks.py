@@ -102,7 +102,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
             elif deal.get('buyer_id') == user_id:
                 status_text = 'Ожидание оплаты' if deal.get('status') == 'created' else 'Оплачено'
                 deal_text = f"""
-📋 <b>ВАША СДЕЛКА</b>
+📋 <b>Ваша сделка</b>
 
 <b>ID:</b> #{deal_id[:8]}
 
@@ -130,13 +130,13 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 
     elif call.data == 'wallet_menu':
         wallet_text = """
-🏦 <b>УПРАВЛЕНИЕ РЕКВИЗИТАМИ</b>
+🏦 <b>Управление реквизитами</b>
 
 <b>Укажите реквизиты для получения платежей:</b>
-• <tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> Ton — для получения ton
-• <tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> Карта — для получения рублей и других валют
-• 💎 Usdt — для получения стейблкоинов
-• 📱 Телефон — для Qiwi/юmoney
+• <tg-emoji emoji-id='5280908091410389246'>⚡</tg-emoji> Gram - для получения GRAM ( ex-TON )
+• <tg-emoji emoji-id='5265245148840745641'>💳</tg-emoji> Карта — для получения рублей и других валют
+• <tg-emoji emoji-id='6035288280562404083'>💳</tg-emoji> USDT - получение usdt в сети TRC20
+• <tg-emoji emoji-id='5217961106554769883'>💳</tg-emoji> Номер телефона - для переводов СБП.
 
 <b>Примечание:</b> Stars не требуют реквизитов, так как оплачиваются напрямую через Telegram
 
@@ -149,7 +149,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
     elif call.data == 'set_ton':
         user = users[user_id]
         wallet_text = f"""
-<tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> <b>TON КОШЕЛЁК</b>
+<tg-emoji emoji-id='5280908091410389246'>⚡</tg-emoji> <b>Gram</b>
 
 <b>Текущий адрес:</b>
 <code>{user['ton_wallet']}</code>
@@ -168,7 +168,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
     elif call.data == 'set_card':
         user = users[user_id]
         card_text = f"""
-<tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> <b>БАНКОВСКАЯ КАРТА</b>
+<tg-emoji emoji-id='5265245148840745641'>💳</tg-emoji> <b>Банковская карта</b>
 
 <b>Текущие реквизиты:</b>
 <code>{user['card_details']}</code>
@@ -187,7 +187,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
     elif call.data == 'set_phone':
         user = users[user_id]
         phone_text = f"""
-📱 <b>НОМЕР ТЕЛЕФОНА</b>
+<tg-emoji emoji-id='5402426498764280452'>💳</tg-emoji> <b>Номер телефона</b>
 
 <b>Текущий номер:</b>
 <code>{user['phone_number']}</code>
@@ -206,7 +206,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
     elif call.data == 'set_usdt':
         user = users[user_id]
         usdt_text = f"""
-💎 <b>USDT КОШЕЛЁК</b>
+<tg-emoji emoji-id='5222409116420433319'>💳</tg-emoji> <b>USDT кошелёк</b>
 
 <b>Текущий адрес:</b>
 <code>{user.get('usdt_wallet', 'Не указан')}</code>
@@ -227,7 +227,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 
     elif call.data == 'change_currency':
         currency_text = f"""
-💱 <b>ВЫБОР ОСНОВНОЙ ВАЛЮТЫ</b>
+💱 <b>Выбор основной валюты</b>
 
 <b>Выберите валюту для отображения баланса:</b>
 • 🇷🇺 Rub — Российский рубль
@@ -235,9 +235,9 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 • 🇰🇿 Kzt — Казахстанский тенге
 • 🇺🇦 Uah — Украинская гривна
 • 🇧🇾 Byn — Белорусский рубль
-• <tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> Ton — The open network
-• 💎 Usdt — Tether
-• ⭐ Stars — Telegram Stars
+• <tg-emoji emoji-id='5280908091410389246'>⚡</tg-emoji> Gram
+• <tg-emoji emoji-id='5222409116420433319'>⚡</tg-emoji> USDT
+• <tg-emoji emoji-id='5463289097336405244'>⚡</tg-emoji> Stars
 
 <b>Ваша текущая валюта будет использоваться по умолчанию при создании сделок.</b>
 """
@@ -248,7 +248,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
         users[user_id]['currency'] = currency
         save_data()
         currency_updated_text = f"""
-✅ <b>ВАЛЮТА ИЗМЕНЕНА</b>
+<tg-emoji emoji-id='5404752966584394198'>💳</tg-emoji> <b>Валюта изменена</b>
 
 <b>Новая основная валюта:</b> {currency}
 
@@ -285,7 +285,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 
         if currency == 'STARS':
             amount_text = f"""
-<tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> <b>УКАЖИТЕ КОЛИЧЕСТВО STARS</b>
+<tg-emoji emoji-id='5463289097336405244'>💰</tg-emoji> <b>Укажите количество stars</b>
 
 <b>Telegram Stars — это внутренняя валюта Telegram</b>
 
@@ -305,15 +305,15 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 """
         else:
             amount_text = f"""
-<tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> <b>УКАЖИТЕ СУММУ СДЕЛКИ</b>
+<tg-emoji emoji-id='5415673019718714238'>💰</tg-emoji> <b>Укажите сумму сделки</b>
 
 <b>Примеры:</b>
-• 5.75 (для ton/Usdt/Usd)
+• 5.75 (для Gram/Usdt/Usd)
 • 1500 (для Rub/Kzt)
 • 500 (для Uah/Byn)
 
 <b>Минимальная сумма:</b>
-• Ton: 0.1
+• Gram: 0.1
 • Usdt: 1
 • Rub: 100
 • Другие валюты: 1
@@ -327,10 +327,10 @@ https://t.me/{bot.get_me().username}?start={deal_id}
     elif call.data.startswith('category_'):
         category = call.data.split('_')[1]
         category_names = {
-            'gift': '🎁 Подарок',
-            'nft': '🏷️ NFT тег',
-            'channel': '📢 Канал/чат',
-            'stars': '⭐ Stars',
+            'gift': '<tg-emoji emoji-id="5422413610112549614">📦</tg-emoji> Подарок',
+            'nft': '<tg-emoji emoji-id="5242219863526642665">📦</tg-emoji> NFT тег',
+            'channel': '<tg-emoji emoji-id="5332824075536471336">📦</tg-emoji> Канал / Чат',
+            'stars': '<tg-emoji emoji-id="5467515585673842012">📦</tg-emoji> Звёзды',
             'other': '<tg-emoji emoji-id="5778672437122045013">📦</tg-emoji> Другое'
         }
         users[user_id]['current_deal']['category'] = category_names.get(category, 'Товар')
@@ -338,22 +338,22 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 
         if category == 'gift':
             description_text = f"""
-📝 <b>ССЫЛКА НА ПОДАРОК</b>
+<tg-emoji emoji-id='5436101426071753223'>💳</tg-emoji> <b>Ссылка на подарок</b>
 
 <b>Категория:</b> {category_names.get(category, 'Товар')}
 
-<b>Вставьте ссылку на подарок:</b>
+<tg-emoji emoji-id='5422838184809627447'>💳</tg-emoji> <b>Вставьте ссылку на подарок:</b>
 • Просто отправьте ссылку
-• Пример: https://t.me/nft/EasterEgg-158557
+• Пример: https://t.me/nft/Playerok-Gifts-0000
 • Убедитесь, что подарок доступен
 
-<b>Важно:</b> Убедитесь, что ссылка правильная и ведет именно на тот товар, который вы продаете!
+<tg-emoji emoji-id='5422895582752572324'>💳</tg-emoji> <b>Убедитесь в правильности ссылки!</b>
 
-<b>Введите ссылку:</b>
+<tg-emoji emoji-id='5469826368273402491'>💳</tg-emoji> <b>Введите ссылку</b>
 """
         elif category == 'stars':
             description_text = f"""
-📝 <b>ОПИСАНИЕ ТОВАРА</b>
+<tg-emoji emoji-id='5332717942599618048'>💳</tg-emoji> <b>Введите описание товара:</b>
 
 <b>Категория:</b> {category_names.get(category, 'Товар')}
 
@@ -372,7 +372,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 """
         elif category == 'other':
             description_text = f"""
-📝 <b>ОПИСАНИЕ ТОВАРА</b>
+<tg-emoji emoji-id='5404689087535800275'>💳</tg-emoji> <b>Описание товара</b>
 
 <b>Категория:</b> {category_names.get(category, 'Товар')}
 
@@ -389,12 +389,12 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 """
         else:
             description_text = f"""
-📝 <b>ОПИСАНИЕ ТОВАРА</b>
+📝 <b>Описание товара</b>
 
 <b>Категория:</b> {category_names.get(category, 'Товар')}
 
 <b>Опишите подробно что вы продаёте:</b>
-• Для NFT тега: название тега, сеть, редкость
+• Для NFT тега - средняя цена на fragment, уникальность, 4-9L username.
 • Для канала/чата: ссылка, количество подписчиков, тематика
 • Условия передачи
 
@@ -979,7 +979,7 @@ https://t.me/{bot.get_me().username}?start={deal_id}
 ⚠️ <b>ОТКРЫТИЕ СПОРА</b>
 
 📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Ваша роль:</b> {'Покупатель' if user_id == deals[deal_id].get('buyer_id') else 'Продавец'}
+<tg-emoji emoji-id='5404689087535800275'>👤</tg-emoji> <b>Ваша роль:</b> {'Покупатель' if user_id == deals[deal_id].get('buyer_id') else 'Продавец'}
 
 👨‍💼 <b>Поддержка сделки:</b> {MANAGER_USERNAME}
 
