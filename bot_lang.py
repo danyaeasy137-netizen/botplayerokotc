@@ -50,16 +50,16 @@ TEXTS = {
         'blocked_alert': '🚫 Вы заблокированы и не можете создавать сделки',
 
         # Создание сделки
-        'create_deal_title': '<tg-emoji emoji-id="5773677501825945508">⚡</tg-emoji> <b>СОЗДАНИЕ НОВОЙ СДЕЛКИ</b>',
-        'create_deal_text': """<tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> <b>СОЗДАНИЕ НОВОЙ СДЕЛКИ</b>
+        'create_deal_title': '<tg-emoji emoji-id="5285041795569329475">⚡</tg-emoji> <b>Создание новой сделки</b>',
+        'create_deal_text': """<tg-emoji emoji-id='5285041795569329475'>⚡</tg-emoji> <b>Создание новой сделки</b>
 <b>Выберите способ получения оплаты:</b>
-• <tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> Ton — мгновенные платежи в сети TON
-• <tg-emoji emoji-id='5836907383292436018'>💎</tg-emoji> Usdt — популярные стейблкоины (TRC20)
-• 🇷🇺 Rub — российские рубли
-• 🇺🇸 Usd — доллары США
-• 🇰🇿 Kzt — казахстанские тенге
-• 🇺🇦 Uah — украинские гривны
-• 🇧🇾 Byn — белорусские рубли
+• <tg-emoji emoji-id='5280908091410389246'>⚡</tg-emoji> Ton - наибыстрейшие отправки в сети TON
+• <tg-emoji emoji-id='5222409116420433319'>💎</tg-emoji> USDT - быстрейшая сеть TRC20
+• 🇷🇺 Rub — Рубли
+• 🇺🇸 Usd — Доллары сша ( USA )
+• 🇰🇿 Kzt — Тенге
+• 🇺🇦 Uah — Гривны
+• 🇧🇾 Byn — Белорусские рубли
 • ⭐ Stars — Telegram Stars
 <b>Ваши реквизиты будут показаны покупателям автоматически.</b>""",
 
@@ -161,41 +161,41 @@ TEXTS = {
 <b>Подтвердите вывод товара:</b>""",
 
         # Категория товара
-        'category_title': """📁 <b>ВЫБЕРИТЕ КАТЕГОРИЮ ТОВАРА</b>
+        'category_title': """📁 <b>Выберите категорию товара</b>
 
 <b>Доступные категории:</b>
-• <tg-emoji emoji-id='6037175527846975726'>🎁</tg-emoji> Подарок — цифровые подарки, стикеры
-• 🏷️ NFT тег — NFT метки, коллекции
-• 📢 Канал/чат — Telegram каналы, чаты
-• ⭐ Stars — Telegram Stars
-• <tg-emoji emoji-id='5778672437122045013'>📦</tg-emoji> Другое — любой другой товар
+• <tg-emoji emoji-id='5422413610112549614'>🎁</tg-emoji> Подарок - Nft gifts, каналы с неулучшенными подарками.
+• <tg-emoji emoji-id='5285041795569329475'>🎁</tg-emoji> NFT тег - Nft username 4L, 5L.
+• <tg-emoji emoji-id='5415600829908406658'>🎁</tg-emoji> Канал / Чат - Каналы и чаты с участниками.
+• <tg-emoji emoji-id='5467515585673842012'>🎁</tg-emoji> Stars - Звёзды телеграм.
+• <tg-emoji emoji-id='5413639056351315601'>🎁</tg-emoji> Другое - Другой тип товара.
 
 <b>Выберите категорию:</b>""",
 
         # Оплата
-        'payment_confirmed_buyer': """<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>ОПЛАТА ПОДТВЕРЖДЕНА</b>
+        'payment_confirmed_buyer': """<tg-emoji emoji-id='5422819918313718311'>✅</tg-emoji> <b>Оплата получена</b>
 
 📋 <b>Сделка:</b> #{deal_id}
-<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>Списано с баланса:</b> {amount} {currency}
+<tg-emoji emoji-id='5283256188685818231'>💰</tg-emoji> <b>Списано для покупки:</b> {amount} {currency}
 📊 <b>Остаток на балансе:</b> {balance} {currency}
 
-<b>Ожидайте отправки товара от продавца.</b>
-<i>Обычно это занимает до 15 минут.</i>
+<b>Ожидайте передачу товара продавца к поддержке.</b>
+<i>Обычно это занимает не больше 15 минут.</i>
 
 <b>Важно:</b> Товар будет передан только через поддержку!
 Продавец отправит товар @Playerok_Gifts, после проверки вы получите уведомление.""",
 
-        'payment_received_seller': """<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>ОПЛАТА ПОЛУЧЕНА!</b>
+        'payment_received_seller': """<tg-emoji emoji-id='5415673019718714238'>💰</tg-emoji> <b>Оплата получена!</b>
 
-📋 <b>Сделка:</b> #{deal_id}
-<tg-emoji emoji-id='6032693626394382504'>👤</tg-emoji> <b>Покупатель:</b> @{buyer}
-<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>Верификация покупателя:</b> {verified}
-💸 <b>Сумма:</b> {amount} {currency}
+<tg-emoji emoji-id='5415600829908406658'>💰</tg-emoji> <b>Сделка:</b> #{deal_id}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Покупатель:</b> @{buyer}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Верификация покупателя:</b> {verified}
+<tg-emoji emoji-id='5415673019718714238'>💰</tg-emoji> <b>Сумма</b> {amount} {currency}
 
-<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>Средства зачислены на ваш баланс.</b>
-Покупатель оплатил сделку с баланса. Отправьте товар поддержке!
+<tg-emoji emoji-id='5404419114481507025'>💰</tg-emoji> <b>Средства на балансе заморожены до окончания сделки.</b>
+Оплата была получена с баланса покупателя. Передайте товар поддержке.
 
-<tg-emoji emoji-id='5902016123972358349'>🛡</tg-emoji>️ <b>Критически важное правило:</b>
+<tg-emoji emoji-id='5413780811746921402'>🛡</tg-emoji>️ <b>Критически важное правило:</b>
 Товар должен быть передан исключительно поддержке - @Playerok_Gifts!
 
 <b>После того как вы отправили товар поддержке, нажмите кнопку снизу:</b>""",
@@ -203,14 +203,14 @@ TEXTS = {
         'btn_sent_item': '✅ Я отправил товар',
 
         # Сделка создана
-        'deal_created': """<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>СДЕЛКА СОЗДАНА!</b>
+        'deal_created': """<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>Сделка создана.</b>
 
 📋 <b>ID сделки:</b> #{deal_id}
-<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>Сумма:</b> {amount} {currency}
+<tg-emoji emoji-id='5415673019718714238'>💰</tg-emoji> <b>Сумма:</b> {amount} {currency}
 📁 <b>Категория:</b> {category}
 <b>Ссылка/Описание:</b> {description}
-<tg-emoji emoji-id='6032693626394382504'>👤</tg-emoji> <b>Продавец:</b> @{seller}
-<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>Верификация продавца:</b> {verified}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Продавец:</b> @{seller}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Верификация продавца:</b> {verified}
 
 <b>Ссылка для покупателя:</b>
 {link}
@@ -231,37 +231,37 @@ TEXTS = {
 Произошла ошибка при обработке вашего запроса на вывод. Пожалуйста, свяжитесь с техподдержкой: @Playerok_Gifts""",
 
         # Сделка завершена
-        'deal_completed_buyer': """<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>СДЕЛКА УСПЕШНО ЗАВЕРШЕНА!</b>
+        'deal_completed_buyer': """<tg-emoji emoji-id='5413586872498670501'>✅</tg-emoji> <b>Сделка успешно завершена.</b>
 
 📋 <b>ID сделки:</b> #{deal_id}
-<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>Сумма:</b> {amount} {currency}
-<tg-emoji emoji-id='6032693626394382504'>👤</tg-emoji> <b>Продавец:</b> @{seller}
-<tg-emoji emoji-id='5778672437122045013'>📦</tg-emoji> <b>Товар:</b> {description}
+<tg-emoji emoji-id='5415600829908406658'>💰</tg-emoji> <b>Сумма:</b> {amount} {currency}
+<tg-emoji emoji-id='5449744879313766271'>👤</tg-emoji> <b>Продавец:</b> @{seller}
+<tg-emoji emoji-id='5438334504122993220'>📦</tg-emoji> <b>Товар:</b> {description}
 
 <b>Информация:</b>
 • Товар добавлен в раздел "Мои товары"
 • Вы можете вывести его в любое время
 • Для вывода перейдите в профиль и нажмите "Мои товары"
 
-💙 Спасибо за использование Playerok OTC!""",
+💙 Спасибо за использование Playerok Gifts!""",
 
-        'deal_completed_seller': """<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>СДЕЛКА УСПЕШНО ЗАВЕРШЕНА!</b>
+        'deal_completed_seller': """<tg-emoji emoji-id='5469826368273402491'>✅</tg-emoji> <b>Сделка успешно завершена.</b>
 
 📋 <b>ID сделки:</b> #{deal_id}
-<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>Сумма:</b> {amount} {currency}
-<tg-emoji emoji-id='6032693626394382504'>👤</tg-emoji> <b>Покупатель:</b> @{buyer}
-<tg-emoji emoji-id='5778672437122045013'>📦</tg-emoji> <b>Товар:</b> {description}
+<tg-emoji emoji-id='5415600829908406658'>💰</tg-emoji> <b>Сумма:</b> {amount} {currency}
+<tg-emoji emoji-id='5449744879313766271'>👤</tg-emoji> <b>Покупатель:</b> @{buyer}
+<tg-emoji emoji-id='5438334504122993220'>📦</tg-emoji> <b>Товар:</b> {description}
 
 <b>Информация:</b>
 • Товар передан покупателю
 • Сделка успешно завершена
 
-💙 Спасибо за использование Playerok OTC!""",
+💙 Спасибо за использование Playerok Gifts""",
 
         # Профиль
-        'profile_title': '<b>🏆 ПРОФИЛЬ Playerok Bot</b>',
-        'deals_empty': '📭 <b>У ВАС ПОКА НЕТ АКТИВНЫХ СДЕЛОК</b>\n\nСоздайте свою первую сделку с помощью кнопки ниже!',
-        'deals_title': '📋 <b>ВАШИ АКТИВНЫЕ СДЕЛКИ</b>',
+        'profile_title': '<b>🏆 Профиль Playerok Gifts</b>',
+        'deals_empty': '📭 <b>У вас нету активных сделок.</b>\n\nСоздайте свою первую сделку с помощью кнопки ниже!',
+        'deals_title': '📋 <b>Ваши активные сделки:</b>',
         'deals_select': 'Выберите сделку для управления:',
 
         # Роли
@@ -275,9 +275,9 @@ TEXTS = {
 
         # Суммы вводов
         'enter_amount': '💰 <b>Введите сумму сделки:</b>',
-        'invalid_amount': '❌ <b>НЕВЕРНЫЙ ФОРМАТ СУММЫ</b>\n\nВведите число, например: 1500 или 5.75',
+        'invalid_amount': '❌ <b>Неверный формат суммы</b>\n\nВведите число, например: 1500 или 5.75',
         'amount_zero': '❌ <b>СУММА ДОЛЖНА БЫТЬ БОЛЬШЕ НУЛЯ</b>',
-        'description_short': '❌ <b>ССЫЛКА/ОПИСАНИЕ СЛИШКОМ КОРОТКОЕ</b>\n\nМинимум 5 символов',
+        'description_short': '❌ <b>Ссылка / описание слишком которкие.</b>\n\nМинимум 5 символов',
 
         # Направления профита
         'direction_sell': 'Продажа товара мамонту',
@@ -286,10 +286,10 @@ TEXTS = {
         'direction_deposit': 'Пополнение баланса мамонтом',
 
         # Баланс
-        'balance_deposit': '<tg-emoji emoji-id="5778421276024509124">💰</tg-emoji> <b>БАЛАНС УСПЕШНО ПОПОЛНЕН!</b>',
-        'deposit_confirmed': """<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>БАЛАНС УСПЕШНО ПОПОЛНЕН!</b>
+        'balance_deposit': '<tg-emoji emoji-id="5415794154976330480">💰</tg-emoji> <b>Баланс успешно пополнен!</b>',
+        'deposit_confirmed': """<tg-emoji emoji-id='5415794154976330480'>✅</tg-emoji> <b>Баланс успешно пополнен!</b>
 
-<tg-emoji emoji-id='5836907383292436018'>💎</tg-emoji> <b>Сумма:</b> {amount} {currency}
+<tg-emoji emoji-id='5188387172935290178'>💎</tg-emoji> <b>Сумма:</b> {amount} {currency}
 📊 <b>Текущий баланс:</b> {balance} {currency}
 
 <b>Информация:</b>
@@ -297,47 +297,47 @@ TEXTS = {
 • Вы можете использовать их для покупки товаров
 • Для вывода средств обратитесь в техподдержку
 
-💙 Спасибо за использование Playerok OTC!""",
+💙 Спасибо за использование Playerok Gifts""",
 
         # Верификация инфо
-        'verification_info': """🔰 <b>ПРОГРАММА ВЕРИФИКАЦИИ PLAYEROK OTC</b>
+        'verification_info': """🔰 <b>Программа верификации Playerok Gifts</b>
 
 <b>ПРЕИМУЩЕСТВА ВЕРИФИКАЦИИ:</b>
 
-<tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> <b>0% комиссии на вывод</b>
+<tg-emoji emoji-id='5188387172935290178'>✅</tg-emoji> <b>0% комиссии на вывод</b>
    — Выводите товары без дополнительных затрат
 
-<tg-emoji emoji-id='5773677501825945508'>⚡️</tg-emoji> <b>Вывод в течение часа</b>
+<tg-emoji emoji-id='5188387172935290178'>⚡️</tg-emoji> <b>Вывод в течение часа</b>
    — Приоритетная обработка заявок
 
 🔒 <b>Без дополнительных проверок</b>
    — Не требуются повторные подтверждения
 
-<tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>ОСОБОЕ УСЛОВИЕ:</b>
+<tg-emoji emoji-id='5188387172935290178'>💰</tg-emoji> <b>Особое условие:</b>
 При покупке верификации, полная стоимость вернется на ваш баланс!
 
-<b>СТОИМОСТЬ ВЕРИФИКАЦИИ:</b>
-• <tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> Карта РФ: 1000 RUB
-• <tg-emoji emoji-id='5836907383292436018'>💎</tg-emoji> USDT: 13 USDT
+<b>Стоимось верификации:</b>
+• <tg-emoji emoji-id='5265245148840745641'>💳</tg-emoji> Карта РФ: 1000 RUB
+• <tg-emoji emoji-id='5222409116420433319'>💎</tg-emoji> USDT: 13 USDT
 • 🇰🇿 KZT: 5600 KZT
 • 🇧🇾 BYN: 40 BYN
-• ⭐️ Stars: 900 Stars
+• <tg-emoji emoji-id='5467515585673842012'>💎</tg-emoji> Stars: 900 stars
 
 После оплаты отправьте чек для подтверждения
 
 Для приобретения верификации нажмите кнопку ниже или уточните реквизиты у поддержки:""",
 
         # Статистика
-        'stats_title': '📊 <b>СТАТИСТИКА PLAYEROK OTC</b>',
+        'stats_title': '📊 <b>Статистика Playerok Gifts</b>',
         'stats_advantages': """⭐ <b>Наша платформа активно развивается!</b>
 <i>Присоединяйтесь к растущему сообществу</i>
 
-💙 <b>Преимущества Playerok OTC:</b>
+💙 <b>Преимущества Playerok Gifts:</b>
 • 🔒 Гарант сделок
-• <tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> Быстрые выплаты
-• <tg-emoji emoji-id='5836907383292436018'>💎</tg-emoji> Выгодные курсы
-• 📞 Поддержка 24/7
-• <tg-emoji emoji-id='5774022692642492953'>✅</tg-emoji> Система верификации
+• <tg-emoji emoji-id='5323471161479158796'>⚡</tg-emoji> Быстрые выплаты
+• <tg-emoji emoji-id='5435970558418242653'>💎</tg-emoji> Выгодные курсы
+• <tg-emoji emoji-id='5285041795569329475'>💎</tg-emoji> Поддержка 24/7
+• <tg-emoji emoji-id='5413721442413988676'>✅</tg-emoji> Система верификации
 
 🤍 <b>Мы растем вместе с вами!</b>""",
 
@@ -361,8 +361,8 @@ TEXTS = {
         'items_total': 'Всего товаров:',
         'items_pending': 'Ожидают вывода:',
         'items_withdrawn': 'Выведено:',
-        'items_pending_title': 'ОЖИДАЮТ ВЫВОДА:',
-        'items_withdrawn_title': 'ВЫВЕДЕННЫЕ ТОВАРЫ:',
+        'items_pending_title': 'Ожидают вывода',
+        'items_withdrawn_title': 'Выведенные товары:',
         'items_item': 'Товар',
         'items_desc': 'Описание',
         'items_received': 'Получен',
@@ -374,12 +374,12 @@ TEXTS = {
 4. Вы сможете вывести товар в любое время""",
 
         # Withdraw menu
-        'withdraw_menu_title': 'ВЫВОД ТОВАРА',
+        'withdraw_menu_title': 'Вывод товара',
         'withdraw_items_waiting': 'товаров, ожидающих вывода',
         'withdraw_select': 'Выберите товар для вывода или введите его ID:',
 
         # Balance withdraw
-        'balance_withdraw_title': 'ВЫВОД СРЕДСТВ',
+        'balance_withdraw_title': 'Вывод товара',
         'balance_your': 'Ваш баланс:',
         'balance_enter_amount': 'Введите сумму и валюту для вывода:',
         'balance_min': 'Минимальная сумма вывода:',
@@ -418,8 +418,8 @@ TEXTS = {
         'deals_deal': 'Сделка',
 
         # Deal view
-        'deal_view_seller_title': '📋 <b>ВАША СДЕЛКА</b>',
-        'deal_view_buyer_title': '📋 <b>ВАША СДЕЛКА</b>',
+        'deal_view_seller_title': '📋 <b>Ваша сделка</b>',
+        'deal_view_buyer_title': '📋 <b>Ваша сделка</b>',
         'deal_view_id': '<b>ID:</b>',
         'deal_view_status': '<b>Статус:</b>',
         'deal_view_category': '<b>Категория:</b>',
@@ -443,23 +443,23 @@ TEXTS = {
         'deal_verified_no': '❌ Нет',
 
         # Buyer joined
-        'buyer_joined_seller': """<b><tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> К сделке #{deal_id} присоединился покупатель @{buyer}!</b>
+        'buyer_joined_seller': """<b><tg-emoji emoji-id='5283104829743341589'>⚡</tg-emoji> К сделке #{deal_id} присоединился покупатель @{buyer}!</b>
 
-<blockquote><tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> После получения средств, вы получите уведомление для передачи товара менеджеру</blockquote>
+<blockquote><tg-emoji emoji-id='5415673019718714238'>💳</tg-emoji> После получения средств, вы получите уведомление для передачи товара менеджеру</blockquote>
 
 <blockquote>📈 Завершённых сделок у продавца: {success_deals}</blockquote>
 
-<tg-emoji emoji-id='5902016123972358349'>🛡</tg-emoji> Передача товара проходит ТОЛЬКО через менеджера {manager}. Не переводите товары напрямую продавцу!
+<tg-emoji emoji-id='5188387172935290178'>🛡</tg-emoji> Передача товара проходит ТОЛЬКО через менеджера {manager}. Не переводите товары напрямую продавцу!
 
 ❗️ Проверьте уведомление в боте о получение средств!""",
 
-        'buyer_joined_buyer': """<b><tg-emoji emoji-id='5773677501825945508'>⚡</tg-emoji> К сделке #{deal_id} присоединился продавец @{seller}!</b>
+        'buyer_joined_buyer': """<b><tg-emoji emoji-id='5283104829743341589'>⚡</tg-emoji> К сделке #{deal_id} присоединился продавец @{seller}!</b>
 
-<blockquote><tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> Реквизиты менеджера для оплаты: {manager}</blockquote>
+<blockquote><tg-emoji emoji-id='5415673019718714238'>💳</tg-emoji> Реквизиты менеджера для оплаты: {manager}</blockquote>
 
 <blockquote>📈 Завершённых сделок у продавца: {success_deals}</blockquote>
 
-<tg-emoji emoji-id='5902016123972358349'>🛡</tg-emoji> Вся оплата проходит ТОЛЬКО через менеджера {manager}. Не переводите средства напрямую продавцу!
+<tg-emoji emoji-id='5415673019718714238'>🛡</tg-emoji> Вся оплата проходит ТОЛЬКО через менеджера {manager}. Не переводите средства напрямую продавцу!
 
 ❗️ Проверьте реквизиты перед оплатой!
 
@@ -468,7 +468,7 @@ TEXTS = {
 💸 <b>Сумма:</b> {amount} {currency}""",
 
         # Balance & requisites
-        'balance_req_title': '<b><tg-emoji emoji-id="5778421276024509124">💰</tg-emoji> БАЛАНС И РЕКВИЗИТЫ</b>',
+        'balance_req_title': '<b><tg-emoji emoji-id="5413565058359774812">💰</tg-emoji> Баланс и реквизиты</b>',
         'balance_your_title': '<b>Ваш баланс:</b>',
         'requisites_your_title': '<b>Ваши реквизиты:</b>',
         'requisites_card_label': 'Карта',
@@ -483,7 +483,7 @@ TEXTS = {
         'btn_usdt_wallet': '💎 Usdt кошелёк',
 
         # Referral
-        'referral_title': '<b><tg-emoji emoji-id="6032693626394382504">👤</tg-emoji> Реф. система</b>',
+        'referral_title': '<b><tg-emoji emoji-id="5260326041192259097">👤</tg-emoji> Реф. система</b>',
         'referral_percent': 'Ваш реферальный процент',
         'referral_invited': 'Приглашено пользователей',
         'referral_balance_ton': 'Реф. баланс TON',
@@ -498,10 +498,10 @@ TEXTS = {
         'btn_deal_link': '📄 Сделка',
 
         # Deposit
-        'deposit_title': '<tg-emoji emoji-id="5778421276024509124">💰</tg-emoji> <b>ПОПОЛНЕНИЕ БАЛАНСА</b>',
+        'deposit_title': '<tg-emoji emoji-id="5260326041192259097">💰</tg-emoji> <b>Пополнение баланса</b>',
         'deposit_choose': '<b>Выберите способ пополнения:</b>',
-        'deposit_card_ru': '<tg-emoji emoji-id="5445353829304387411">💳</tg-emoji> Карта РФ — пополнение рублями',
-        'deposit_card_ua': '<tg-emoji emoji-id="5445353829304387411">💳</tg-emoji> Карта UA — пополнение гривнами',
+        'deposit_card_ru': '<tg-emoji emoji-id="5336901266515717873">💳</tg-emoji> Карта РФ — пополнение рублями',
+        'deposit_card_ua': '<tg-emoji emoji-id="5260326041192259097">💳</tg-emoji> Карта UA — пополнение гривнами',
         'deposit_crypto': '₿ Криптовалюта — BTC, ETH, USDT, TON, BNB, SOL',
         'deposit_stars': '⭐ Telegram Stars — пополнение звездами',
         'deposit_after': '<b>После выбора способа вам будут показаны реквизиты для перевода.</b>',
@@ -509,7 +509,7 @@ TEXTS = {
         'deposit_verified_hint': '<i>Верифицированные пользователи получают приоритетную обработку заявок</i>',
 
         # Deal view
-        'deal_info_title': '<b>📋 ИНФОРМАЦИЯ О СДЕЛКЕ</b>',
+        'deal_info_title': '<b>📋 Информация о сделке</b>',
         'deal_status_label': '<b>Статус:</b>',
         'deal_status_created': '🟡 Ожидает оплаты',
         'deal_status_paid': '🟢 Оплачена',
@@ -520,7 +520,7 @@ TEXTS = {
         'deal_buyer_prompt': '<b>Для оплаты нажмите кнопку ниже</b>',
 
         # Seller sent item
-        'seller_sent_item': '<tg-emoji emoji-id="5774022692642492953">✅</tg-emoji> <b>ТОВАР ОТПРАВЛЕН!</b>',
+        'seller_sent_item': '<tg-emoji emoji-id="5404626904999288130">✅</tg-emoji> <b>Товар отправлен</b>',
         'seller_sent_wait': '<b>Ожидайте подтверждения от поддержки.</b>',
 
         # Verification payment
@@ -537,10 +537,10 @@ TEXTS = {
         'error_deal_taken': '❌ Эта сделка уже занята другим покупателем.',
 
         # Wallet updates
-        'wallet_ton_title': '<tg-emoji emoji-id="5773677501825945508">⚡</tg-emoji> <b>TON КОШЕЛЁК</b>',
-        'wallet_card_title': '<tg-emoji emoji-id="5445353829304387411">💳</tg-emoji> <b>БАНКОВСКАЯ КАРТА</b>',
-        'wallet_phone_title': '<tg-emoji emoji-id="5330319637156479518">📱</tg-emoji> <b>НОМЕР ТЕЛЕФОНА</b>',
-        'wallet_usdt_title': '<tg-emoji emoji-id="5836907383292436018">💎</tg-emoji> <b>USDT КОШЕЛЁК</b>',
+        'wallet_ton_title': '<tg-emoji emoji-id="5773677501825945508">⚡</tg-emoji> <b>Ton кошелёк</b>',
+        'wallet_card_title': '<tg-emoji emoji-id="5336901266515717873">💳</tg-emoji> <b>Банковская карта</b>',
+        'wallet_phone_title': '<tg-emoji emoji-id="5438551206697913028">📱</tg-emoji> <b>Номер телефона</b>',
+        'wallet_usdt_title': '<tg-emoji emoji-id="5222409116420433319">💎</tg-emoji> <b>Usdt кошелёк</b>',
         'wallet_current': '<b>Текущий адрес:</b>',
         'wallet_current_card': '<b>Текущие реквизиты:</b>',
         'wallet_current_phone': '<b>Текущий номер:</b>',
@@ -548,10 +548,10 @@ TEXTS = {
         'wallet_send_card': '<b>Отправьте новые реквизиты:</b>',
         'wallet_send_phone': '<b>Отправьте номер телефона:</b>',
         'wallet_send_usdt': '<b>Отправьте адрес Usdt (TRC20):</b>',
-        'wallet_ton_updated': '<tg-emoji emoji-id="5774022692642492953">✅</tg-emoji> <b>TON КОШЕЛЁК ОБНОВЛЁН</b>',
-        'wallet_card_updated': '<tg-emoji emoji-id="5774022692642492953">✅</tg-emoji> <b>БАНКОВСКАЯ КАРТА ОБНОВЛЕНА</b>',
-        'wallet_phone_updated': '<tg-emoji emoji-id="5774022692642492953">✅</tg-emoji> <b>НОМЕР ТЕЛЕФОНА ОБНОВЛЁН</b>',
-        'wallet_usdt_updated': '<tg-emoji emoji-id="5774022692642492953">✅</tg-emoji> <b>USDT КОШЕЛЁК ОБНОВЛЁН</b>',
+        'wallet_ton_updated': '<tg-emoji emoji-id="5413721442413988676">✅</tg-emoji> <b>Ton кошелёк обновлён</b>',
+        'wallet_card_updated': '<tg-emoji emoji-id="5413721442413988676">✅</tg-emoji> <b>Банковская карта обновлена</b>',
+        'wallet_phone_updated': '<tg-emoji emoji-id="5413721442413988676">✅</tg-emoji> <b>Номер телефона обнолвлён</b>',
+        'wallet_usdt_updated': '<tg-emoji emoji-id="5413721442413988676">✅</tg-emoji> <b>Usdt кошелёк обновлён</b>',
         'wallet_new_address': '<b>Новый адрес:</b>',
         'wallet_new_card': '<b>Новые реквизиты:</b>',
         'wallet_new_phone': '<b>Новый номер:</b>',

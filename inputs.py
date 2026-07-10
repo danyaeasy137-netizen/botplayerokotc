@@ -89,7 +89,7 @@ def handle_message(message):
 
             if req_type == 'card':
                 info_text += f"🏦 <b>Банк:</b> {data.get('bank', '-')}\n"
-                info_text += f"<tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> <b>Карта:</b> <code>{data.get('card', '-')}</code>\n"
+                info_text += f"<tg-emoji emoji-id='5265245148840745641'>💳</tg-emoji> <b>Карта:</b> <code>{data.get('card', '-')}</code>\n"
                 info_text += f"📱 <b>Телефон:</b> <code>{data.get('phone', '-')}</code>\n"
                 info_text += f"<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Владелец:</b> {data.get('owner', '-')}\n"
             elif req_type == 'crypto':
@@ -109,7 +109,7 @@ def handle_message(message):
             save_data()
             field_names = {
                 'bank': '🏦 Банк',
-                'card': '<tg-emoji emoji-id="5445353829304387411">💳</tg-emoji> Номер карты',
+                'card': '<tg-emoji emoji-id="5265245148840745641">💳</tg-emoji> Номер карты',
                 'phone': '📱 Номер телефона',
                 'owner': '<tg-emoji emoji-id="6041705726206808304">👤</tg-emoji> Владелец',
                 'wallet': '📋 Адрес кошелька',
@@ -122,7 +122,7 @@ def handle_message(message):
             field_label = field_names.get(field, field)
             req_type = data.get('type', 'card')
             success_text = f"""
-✅ <b>РЕКВИЗИТЫ ОБНОВЛЕНЫ</b>
+<tg-emoji emoji-id='5438107064129833849'>💳</tg-emoji> <b>Реквизвиты обновлены</b>
 
 <b>Метод:</b> {icon} {name}
 
@@ -137,7 +137,7 @@ def handle_message(message):
 
             if req_type == 'card':
                 success_text += f"🏦 <b>Банк:</b> {data.get('bank', '-')}\n"
-                success_text += f"<tg-emoji emoji-id='5445353829304387411'>💳</tg-emoji> <b>Карта:</b> <code>{data.get('card', '-')}</code>\n"
+                success_text += f"<tg-emoji emoji-id='5265245148840745641'>💳</tg-emoji> <b>Карта:</b> <code>{data.get('card', '-')}</code>\n"
                 success_text += f"📱 <b>Телефон:</b> <code>{data.get('phone', '-')}</code>\n"
                 success_text += f"<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Владелец:</b> {data.get('owner', '-')}\n"
             elif req_type == 'crypto':
