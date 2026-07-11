@@ -483,7 +483,7 @@ TEXTS = {
         'btn_usdt_wallet': '💎 Usdt кошелёк',
 
         # Referral
-        'referral_title': '<b><tg-emoji emoji-id="5260326041192259097">👤</tg-emoji> Реф. система</b>',
+        'referral_title': '<b><tg-emoji emoji-id="5469969747166645686">👤</tg-emoji> Реф. система</b>',
         'referral_percent': 'Ваш реферальный процент',
         'referral_invited': 'Приглашено пользователей',
         'referral_balance_ton': 'Реф. баланс TON',
