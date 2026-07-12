@@ -621,34 +621,34 @@ def handle_sent_item(call):
     # Warning-викторина выпилена (ТЗ 2026-05-10) — сразу подтверждаем отправку
     log_activity(user_id, 'Подтвердил отправку товара поддержке', deal_id)
     seller_text = f"""
-📤 <b>ОТПРАВКА ПОДТВЕРЖДЕНА</b>
+<tg-emoji emoji-id='5285041795569329475'>👤</tg-emoji> <b>Вы подтвердили отправку.</b>
 
-📋 <b>Сделка:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Покупатель:</b> @{users[deal['buyer_id']]['username']}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Сделка:</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Покупатель:</b> @{users[deal['buyer_id']]['username']}
 
-<b>Товар отправлен поддержке {MANAGER_USERNAME}.</b>
-<i>Ожидайте подтверждения получения товара поддержкой.</i>
+<b>Мы проверяем, действительно ли подарок отправлен поддержке {MANAGER_USERNAME}.</b>
+<i>Менеджер проверяет передачу подарка</i>
 
-<b>Внимание:</b> Любая передача товара напрямую покупателю автоматически отменяет сделку!
+<tg-emoji emoji-id='5188387172935290178'>👤</tg-emoji> <b>Внимание:</b> При любой передаче товара покупателю будет открыт спор!
 
-<b>Статус:</b> Ожидание проверки администратором
+<tg-emoji emoji-id='5415959764620299563'>👤</tg-emoji> <b>Статус:</b> Ожидание проверки администратором
 """
     keyboard = InlineKeyboardMarkup(row_width=1)
     keyboard.add(InlineKeyboardButton(get_text(user_id, "btn_back_menu", users), callback_data='main_menu'))
     send_photo_message(chat_id, message_id, seller_text, keyboard)
     notify_admins_item_received(deal_id, user_id)
     buyer_text = f"""
-<tg-emoji emoji-id='5449648985578945152'>📦</tg-emoji> <b>Ожидание подтверждения</b>
+<tg-emoji emoji-id='5415959764620299563'>📦</tg-emoji> <b>Ожидание подтверждения</b>
 
-<tg-emoji emoji-id='5438334504122993220'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
-<tg-emoji emoji-id='5402426498764280452'>👤</tg-emoji> <b>Продавец:</b> @{users[deal['seller_id']]['username']}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Сделка</b> #{deal_id[:8]}
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Продавец:</b> @{users[deal['seller_id']]['username']}
 
-<b>Продавец отправил товар поддержке.</b>
-<i>Администратор проверяет получение товара.</i>
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Продавец отправил товар поддержке.</b>
+<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <i>Администратор проверяет получение товара.</i>
 
-<b>Внимание:</b> Любая передача товара напрямую от продавца автоматически отменяет сделку!
+<tg-emoji emoji-id='5188387172935290178'>👤</tg-emoji> <b>Внимание:</b> Любая передача товара напрямую от продавца автоматически отменяет сделку!
 
-<b>Ожидайте подтверждения от администратора.</b>
+<tg-emoji emoji-id='5415959764620299563'>👤</tg-emoji> <b>Ожидайте подтверждения от администратора.</b>
 
 <b>Обычно это занимает до 30 минут.</b>
 """

@@ -2158,14 +2158,14 @@ def handle_message(message):
 ✅ <b>Сделка создана</b>
 
 📋 <b>ID сделки:</b> #{deal_id[:8]}
-<tg-emoji emoji-id='5402426498764280452'>💰</tg-emoji> <b>Сумма:</b> {deal_data['amount']} {deal_data['currency']}
+<tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> <b>Сумма:</b> {deal_data['amount']} {deal_data['currency']}
 
-📁 <b>Категория:</b> {deal_data.get('category', 'Товар')}
+<tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> <b>Категория:</b> {deal_data.get('category', 'Товар')}
 
 {_items_section}
-<tg-emoji emoji-id='5258192778180984895'>👤</tg-emoji> <b>Продавец:</b> @{user['username']}
+<tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> <b>Продавец:</b> @{user['username']}
 
-✅ <b>Верификация продавца:</b> {'✅ Да' if is_user_verified(user_id) else '❌ Нет'}
+<tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> <b>Верификация продавца</b> {'✅ Да' if is_user_verified(user_id) else '❌ Нет'}
 
 <b>Отправьте эту ссылку покупателю:</b>
 https://t.me/{bot.get_me().username}?start={deal_id}
