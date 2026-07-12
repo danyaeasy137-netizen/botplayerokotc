@@ -444,83 +444,98 @@ def _handle_start_impl(message):
             # ⬆️⬆️⬆️ ОТЛАДКА ⬆️⬆️⬆️
 
             if deal_id in deals:
-                deal = deals[deal_id]
-
-                from bot_lang import get_text
-
-                if deal['seller_id'] == user_id:
-                    bot.send_message(
-                        message.chat.id,
-                        get_text(user_id, 'error_own_deal', users),
-                        parse_mode='HTML'
-                    )
-                    return
-
-                if deal.get('buyer_id') and deal['buyer_id'] != user_id:
-                    bot.send_message(
-                        message.chat.id,
-                        get_text(user_id, 'error_deal_taken', users),
-                        parse_mode='HTML'
-                    )
-                    return
-
-                init_user(user_id)
-
-                if not deal.get('buyer_id'):
-                    deal['buyer_id'] = user_id
-                    users[user_id]['current_deal'] = deal_id
-                    save_data()
-                    log_activity(user_id, 'Присоединился к сделке как покупатель', deal_id)
-                    
-                    # Отправляем продавцу
-                    seller_text = get_text(deal['seller_id'], 'buyer_joined_seller', users).format(
-                        deal_id=deal_id[:8],
-                        buyer=users[user_id]['username'],
-                        success_deals=users[deal['seller_id']]['success_deals'],
-                        manager=MANAGER_USERNAME
-                    )
-                    send_photo_message(deal['seller_id'], None, seller_text)
-
-                # ⬇️⬇️⬇️ ФОРМИРУЕМ СООБЩЕНИЕ ДЛЯ ПОКУПАТЕЛЯ ⬇️⬇️⬇️
-                buyer_text = get_text(user_id, 'buyer_joined_buyer', users).format(
-                    deal_id=deal_id[:8],
-                    seller=users[deal['seller_id']]['username'],
-                    success_deals=users[deal['seller_id']]['success_deals'],
-                    manager=MANAGER_USERNAME,
-                    description=deal['description'],
-                    amount=deal['amount'],
-                    currency=deal['currency']
-                )
-
-                # ⬇️⬇️⬇️ ОТЛАДКА ⬇️⬇️⬇️
-                print(f"🔍 DEBUG: buyer_text = {buyer_text[:100]}...")
-                print(f"🔍 DEBUG: user_id for buyer = {user_id}")
-                # ⬆️⬆️⬆️ ОТЛАДКА ⬆️⬆️⬆️
-                
-                keyboard = InlineKeyboardMarkup(row_width=1)
-                keyboard.add(
-                    InlineKeyboardButton(get_text(user_id, 'btn_pay_balance', users), callback_data=f'pay_balance_{deal_id}')
-                )
-                keyboard.add(
-                    InlineKeyboardButton(get_text(user_id, 'btn_open_dispute', users), callback_data=f'dispute_{deal_id}')
-                )
-                keyboard.add(
-                    InlineKeyboardButton(get_text(user_id, 'btn_back_menu', users), callback_data='main_menu')
-                )
-
-                # ⬇️⬇️⬇️ ОТПРАВЛЯЕМ ПОКУПАТЕЛЮ ⬇️⬇️⬇️
                 try:
-                    send_photo_message(user_id, None, buyer_text, keyboard)
-                    print(f"✅ Сообщение отправлено покупателю {user_id}")
-                except Exception as e:
-                    print(f"❌ Ошибка send_photo_message: {e}")
-                    # Если фото не отправляется — шлём обычным текстом
+                    deal = deals[deal_id]
+                    
+                    print(f"🔍 DEBUG: deal keys = {list(deal.keys())}")
+                    print(f"🔍 DEBUG: seller_id = {deal.get('seller_id', 'НЕТ!')}")
+                    print(f"🔍 DEBUG: buyer_id = {deal.get('buyer_id', 'НЕТ!')}")
+
+                    from bot_lang import get_text
+
+                    if deal.get('seller_id') == user_id:
+                        bot.send_message(
+                            message.chat.id,
+                            get_text(user_id, 'error_own_deal', users),
+                            parse_mode='HTML'
+                        )
+                        return
+
+                    if deal.get('buyer_id') and deal.get('buyer_id') != user_id:
+                        bot.send_message(
+                            message.chat.id,
+                            get_text(user_id, 'error_deal_taken', users),
+                            parse_mode='HTML'
+                        )
+                        return
+
+                    init_user(user_id)
+
+                    if not deal.get('buyer_id'):
+                        deal['buyer_id'] = user_id
+                        users[user_id]['current_deal'] = deal_id
+                        save_data()
+                        log_activity(user_id, 'Присоединился к сделке как покупатель', deal_id)
+                        
+                        # Отправляем продавцу
+                        seller_id = deal.get('seller_id')
+                        if seller_id and seller_id in users:
+                            seller_text = get_text(seller_id, 'buyer_joined_seller', users).format(
+                                deal_id=deal_id[:8],
+                                buyer=users[user_id]['username'],
+                                success_deals=users[seller_id].get('success_deals', 0),
+                                manager=MANAGER_USERNAME
+                            )
+                            send_photo_message(seller_id, None, seller_text)
+                        else:
+                            print(f"❌ Ошибка: seller_id {seller_id} не найден в users!")
+
+                    # ⬇️⬇️⬇️ ФОРМИРУЕМ СООБЩЕНИЕ ДЛЯ ПОКУПАТЕЛЯ ⬇️⬇️⬇️
+                    print(f"🔍 DEBUG: Формируем buyer_text...")
+                    
+                    buyer_text = get_text(user_id, 'buyer_joined_buyer', users).format(
+                        deal_id=deal_id[:8],
+                        seller=users[deal['seller_id']]['username'],
+                        success_deals=users[deal['seller_id']]['success_deals'],
+                        manager=MANAGER_USERNAME,
+                        description=deal['description'],
+                        amount=deal['amount'],
+                        currency=deal['currency']
+                    )
+
+                    print(f"🔍 DEBUG: buyer_text готов")
+                    
+                    keyboard = InlineKeyboardMarkup(row_width=1)
+                    keyboard.add(
+                        InlineKeyboardButton(get_text(user_id, 'btn_pay_balance', users), callback_data=f'pay_balance_{deal_id}')
+                    )
+                    keyboard.add(
+                        InlineKeyboardButton(get_text(user_id, 'btn_open_dispute', users), callback_data=f'dispute_{deal_id}')
+                    )
+                    keyboard.add(
+                        InlineKeyboardButton(get_text(user_id, 'btn_back_menu', users), callback_data='main_menu')
+                    )
+
+                    # ⬇️⬇️⬇️ ОТПРАВЛЯЕМ ПОКУПАТЕЛЮ ⬇️⬇️⬇️
                     try:
-                        bot.send_message(user_id, buyer_text, parse_mode='HTML', reply_markup=keyboard)
-                        print(f"✅ Текстовое сообщение отправлено покупателю {user_id}")
-                    except Exception as e2:
-                        print(f"❌ И текст не отправился: {e2}")
-                return
+                        send_photo_message(user_id, None, buyer_text, keyboard)
+                        print(f"✅ Сообщение отправлено покупателю {user_id}")
+                    except Exception as e:
+                        print(f"❌ Ошибка send_photo_message: {e}")
+                        # Если фото не отправляется — шлём обычным текстом
+                        try:
+                            bot.send_message(user_id, buyer_text, parse_mode='HTML', reply_markup=keyboard)
+                            print(f"✅ Текстовое сообщение отправлено покупателю {user_id}")
+                        except Exception as e2:
+                            print(f"❌ И текст не отправился: {e2}")
+                    return
+                    
+                except Exception as e:
+                    print(f"❌❌❌ КРИТИЧЕСКАЯ ОШИБКА: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    bot.send_message(message.chat.id, "⚠️ Ошибка при присоединении к сделке. Попробуйте позже.")
+                    return
 
         else:
             try:
