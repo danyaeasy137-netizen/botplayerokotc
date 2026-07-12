@@ -430,8 +430,18 @@ def _handle_start_impl(message):
     if len(message.text.split()) > 1:
         ref_or_deal = message.text.split()[1]
 
+        # ⬇️⬇️⬇️ ОТЛАДКА ⬇️⬇️⬇️
+        print(f"🔍 DEBUG: ref_or_deal = {ref_or_deal}")
+        print(f"🔍 DEBUG: len = {len(ref_or_deal)}, count('-') = {ref_or_deal.count('-')}")
+        # ⬆️⬆️⬆️ ОТЛАДКА ⬆️⬆️⬆️
+
         if len(ref_or_deal) == 36 and ref_or_deal.count('-') == 4:
             deal_id = ref_or_deal
+
+            # ⬇️⬇️⬇️ ОТЛАДКА ⬇️⬇️⬇️
+            print(f"🔍 DEBUG: deal_id = {deal_id}")
+            print(f"🔍 DEBUG: deal in deals = {deal_id in deals}")
+            # ⬆️⬆️⬆️ ОТЛАДКА ⬆️⬆️⬆️
 
             if deal_id in deals:
                 deal = deals[deal_id]
@@ -481,6 +491,11 @@ def _handle_start_impl(message):
                     amount=deal['amount'],
                     currency=deal['currency']
                 )
+
+                # ⬇️⬇️⬇️ ОТЛАДКА ⬇️⬇️⬇️
+                print(f"🔍 DEBUG: buyer_text = {buyer_text[:100]}...")
+                print(f"🔍 DEBUG: user_id for buyer = {user_id}")
+                # ⬆️⬆️⬆️ ОТЛАДКА ⬆️⬆️⬆️
                 
                 keyboard = InlineKeyboardMarkup(row_width=1)
                 keyboard.add(
@@ -516,5 +531,3 @@ def _handle_start_impl(message):
     init_user(user_id, referrer_id)
     welcome_text, keyboard = main_menu(user_id)
     send_photo_message(message.chat.id, None, welcome_text, keyboard)
-
-
