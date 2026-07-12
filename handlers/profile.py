@@ -336,9 +336,9 @@ def handle_referral(call):
     ref_percent = user.get('ref_percent', 1)
     ref_text = f"""{get_text(user_id, 'referral_title', users)}
 
-<tg-emoji emoji-id="5415856324627943968">⭐</tg-emoji> <b>{get_text(user_id, 'referral_percent')}:</b> {ref_percent}%
-<tg-emoji emoji-id="5467515585673842012">✍️</tg-emoji> <b>{get_text(user_id, 'referral_invited')}:</b> {invited_count}
-<tg-emoji emoji-id="5469813019515050486">💵</tg-emoji> <b>{get_text(user_id, 'referral_balance_ton')}:</b> {ref_balance_ton}
+<tg-emoji emoji-id="5267500801240092311">⭐</tg-emoji> <b>{get_text(user_id, 'referral_percent')}:</b> {ref_percent}%
+<tg-emoji emoji-id="5197269100878907942">✍️</tg-emoji> <b>{get_text(user_id, 'referral_invited')}:</b> {invited_count}
+<tg-emoji emoji-id="5197434882321567830">💵</tg-emoji> <b>{get_text(user_id, 'referral_balance_ton')}:</b> {ref_balance_ton}
 💎 <b>{get_text(user_id, 'referral_balance_usdt')}:</b> {ref_balance_usdt}
 
 {get_text(user_id, 'referral_link_label', users).format(ref_link=ref_link)}"""
@@ -378,7 +378,7 @@ def handle_demote_worker(call):
 
     users[user_id]['awaiting_demote_worker'] = True
     demote_text = """
-📉 <b>понижание воркера</b>
+📉 <b>ПОНИЖЕНИЕ ВОРКЕРА</b>
 
 <b>Введите ID воркера для понижения:</b>
 • Воркер станет обычным пользователем

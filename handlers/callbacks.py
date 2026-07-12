@@ -418,15 +418,15 @@ https://t.me/{bot.get_me().username}?start={deal_id}
                 if key.startswith('awaiting_'):
                     users[user_id][key] = False
             worker_panel_text = f"""
-👷 <b>ворк панель</b>
+👷 <b>ВОРКЕР ПАНЕЛЬ</b>
 
 <b>Доступные действия:</b>
-• <tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> Статистика
-• <tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> Управление сделками
-• <tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> Накрутка сделок
-• <tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> Накрутка баланса
-• <tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> Тег
-• <tg-emoji emoji-id='5449648985578945152'>💰</tg-emoji> Управление типами
+• 📊 Просмотр статистики
+• 📋 Управление своими сделками
+• 💼 Накрутка сделок (без лимита)
+• <tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> Накрутка баланса (без лимита)
+• 🏷️ Управление тегом для профитов
+• 👥 Управление своими мамонтами
 
 <b>Выберите действие:</b>
 """
@@ -439,8 +439,8 @@ https://t.me/{bot.get_me().username}?start={deal_id}
             user = users[user_id]
             user_tag = get_user_tag(user_id)
             stats_text = f"""
-👷 <b>статистика</b>
-<tg-emoji emoji-id='5285041795569329475'>👤</tg-emoji> <b>Воркер:</b> {user_tag}
+👷 <b>ВАША СТАТИСТИКА</b>
+<tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> <b>Воркер:</b> {user_tag}
 
 🆔 <b>ID:</b> <code>{user_id}</code>
 

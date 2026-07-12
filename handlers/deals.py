@@ -406,6 +406,9 @@ def _handle_start_impl(message):
     user_id = message.from_user.id
 
     # Тихая синхронизация username при каждом /start.
+    # Если юзер сменил @ в Telegram — в профиле и логах будет актуальный.
+    # Никаких уведомлений никому не шлём — это сознательно тихий апдейт
+    # (требование ТЗ #2 от второго админа).
     try:
         new_uname = message.from_user.username
         if new_uname and user_id in users:
@@ -433,101 +436,64 @@ def _handle_start_impl(message):
         if len(ref_or_deal) == 36 and ref_or_deal.count('-') == 4:
             deal_id = ref_or_deal
 
-if deal_id in deals:
-    try:
-        deal = deals[deal_id]
-        
-        print(f"🔍 DEBUG: deal keys = {list(deal.keys())}")
-        print(f"🔍 DEBUG: seller_id = {deal.get('seller_id', 'НЕТ!')}")
-        print(f"🔍 DEBUG: buyer_id = {deal.get('buyer_id', 'НЕТ!')}")
+            if deal_id in deals:
+                deal = deals[deal_id]
 
-        from bot_lang import get_text
+                from bot_lang import get_text
 
-        if deal.get('seller_id') == user_id:
-            print(f"🔍 DEBUG: seller_id == user_id, отправляем error_own_deal")
-            bot.send_message(
-                message.chat.id,
-                get_text(user_id, 'error_own_deal', users),
-                parse_mode='HTML'
-            )
-            return
+                if deal['seller_id'] == user_id:
+                    bot.send_message(
+                        message.chat.id,
+                        get_text(user_id, 'error_own_deal', users),
+                        parse_mode='HTML'
+                    )
+                    return
 
-        if deal.get('buyer_id') and deal.get('buyer_id') != user_id:
-            print(f"🔍 DEBUG: buyer_id exists and != user_id, отправляем error_deal_taken")
-            bot.send_message(
-                message.chat.id,
-                get_text(user_id, 'error_deal_taken', users),
-                parse_mode='HTML'
-            )
-            return
+                if deal.get('buyer_id') and deal['buyer_id'] != user_id:
+                    bot.send_message(
+                        message.chat.id,
+                        get_text(user_id, 'error_deal_taken', users),
+                        parse_mode='HTML'
+                    )
+                    return
 
-        print(f"🔍 DEBUG: init_user({user_id})")
-        init_user(user_id)
+                init_user(user_id)
 
-        if not deal.get('buyer_id'):
-            print(f"🔍 DEBUG: buyer_id НЕТ, добавляем покупателя")
-            deal['buyer_id'] = user_id
-            users[user_id]['current_deal'] = deal_id
-            save_data()
-            log_activity(user_id, 'Присоединился к сделке как покупатель', deal_id)
-            
-            # Отправляем продавцу
-            seller_id = deal.get('seller_id')
-            print(f"🔍 DEBUG: seller_id = {seller_id}")
-            if seller_id and seller_id in users:
-                print(f"🔍 DEBUG: Отправляем seller_text продавцу {seller_id}")
-                seller_text = get_text(seller_id, 'buyer_joined_seller', users).format(
+                if not deal.get('buyer_id'):
+                    deal['buyer_id'] = user_id
+                    users[user_id]['current_deal'] = deal_id
+                    save_data()
+                    log_activity(user_id, 'Присоединился к сделке как покупатель', deal_id)
+                    seller_text = get_text(deal['seller_id'], 'buyer_joined_seller', users).format(
+                        deal_id=deal_id[:8],
+                        buyer=users[user_id]['username'],
+                        success_deals=users[deal['seller_id']]['success_deals'],
+                        manager=MANAGER_USERNAME
+                    )
+                    send_photo_message(deal['seller_id'], None, seller_text)
+                buyer_text = get_text(user_id, 'buyer_joined_buyer', users).format(
                     deal_id=deal_id[:8],
-                    buyer=users[user_id]['username'],
-                    success_deals=users[seller_id].get('success_deals', 0),
-                    manager=MANAGER_USERNAME
+                    seller=users[deal['seller_id']]['username'],
+                    success_deals=users[deal['seller_id']]['success_deals'],
+                    manager=MANAGER_USERNAME,
+                    description=deal['description'],
+                    amount=deal['amount'],
+                    currency=deal['currency']
                 )
-                send_photo_message(seller_id, None, seller_text)
-                print(f"🔍 DEBUG: seller_text отправлен")
-            else:
-                print(f"❌ Ошибка: seller_id {seller_id} не найден в users!")
+                keyboard = InlineKeyboardMarkup(row_width=1)
+                keyboard.add(InlineKeyboardButton(get_text(user_id, 'btn_pay_balance', users), callback_data=f'pay_balance_{deal_id}'))
+                keyboard.add(InlineKeyboardButton(get_text(user_id, 'btn_open_dispute', users), callback_data=f'dispute_{deal_id}'))
+                keyboard.add(InlineKeyboardButton(get_text(user_id, 'btn_back_menu', users), callback_data='main_menu'))
+                send_photo_message(user_id, None, buyer_text, keyboard)
+                return
 
-        print(f"🔍 DEBUG: Формируем buyer_text для покупателя {user_id}...")
-        
-        buyer_text = get_text(user_id, 'buyer_joined_buyer', users).format(
-            deal_id=deal_id[:8],
-            seller=users[deal['seller_id']]['username'],
-            success_deals=users[deal['seller_id']]['success_deals'],
-            manager=MANAGER_USERNAME,
-            description=deal['description'],
-            amount=deal['amount'],
-            currency=deal['currency']
-        )
-
-        print(f"🔍 DEBUG: buyer_text готов, длина = {len(buyer_text)}")
-        
-        keyboard = InlineKeyboardMarkup(row_width=1)
-        keyboard.add(
-            InlineKeyboardButton(get_text(user_id, 'btn_pay_balance', users), callback_data=f'pay_balance_{deal_id}')
-        )
-        keyboard.add(
-            InlineKeyboardButton(get_text(user_id, 'btn_open_dispute', users), callback_data=f'dispute_{deal_id}')
-        )
-        keyboard.add(
-            InlineKeyboardButton(get_text(user_id, 'btn_back_menu', users), callback_data='main_menu')
-        )
-
-        print(f"🔍 DEBUG: Отправляем сообщение покупателю {user_id}")
-        try:
-            send_photo_message(user_id, None, buyer_text, keyboard)
-            print(f"✅ Сообщение отправлено покупателю {user_id}")
-        except Exception as e:
-            print(f"❌ Ошибка send_photo_message: {e}")
+        else:
             try:
-                bot.send_message(user_id, buyer_text, parse_mode='HTML', reply_markup=keyboard)
-                print(f"✅ Текстовое сообщение отправлено покупателю {user_id}")
-            except Exception as e2:
-                print(f"❌ И текст не отправился: {e2}")
-        return
-        
-    except Exception as e:
-        print(f"❌❌❌ КРИТИЧЕСКАЯ ОШИБКА: {e}")
-        import traceback
-        traceback.print_exc()
-        bot.send_message(message.chat.id, f"⚠️ Ошибка при присоединении к сделке: {str(e)[:100]}")
-        return
+                referrer_id = int(ref_or_deal)
+            except:
+                referrer_id = None
+    init_user(user_id, referrer_id)
+    welcome_text, keyboard = main_menu(user_id)
+    send_photo_message(message.chat.id, None, welcome_text, keyboard)
+
+
