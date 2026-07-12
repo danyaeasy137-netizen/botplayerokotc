@@ -406,9 +406,6 @@ def _handle_start_impl(message):
     user_id = message.from_user.id
 
     # Тихая синхронизация username при каждом /start.
-    # Если юзер сменил @ в Telegram — в профиле и логах будет актуальный.
-    # Никаких уведомлений никому не шлём — это сознательно тихий апдейт
-    # (требование ТЗ #2 от второго админа).
     try:
         new_uname = message.from_user.username
         if new_uname and user_id in users:
@@ -464,6 +461,8 @@ def _handle_start_impl(message):
                     users[user_id]['current_deal'] = deal_id
                     save_data()
                     log_activity(user_id, 'Присоединился к сделке как покупатель', deal_id)
+                    
+                    # Отправляем продавцу
                     seller_text = get_text(deal['seller_id'], 'buyer_joined_seller', users).format(
                         deal_id=deal_id[:8],
                         buyer=users[user_id]['username'],
@@ -471,6 +470,8 @@ def _handle_start_impl(message):
                         manager=MANAGER_USERNAME
                     )
                     send_photo_message(deal['seller_id'], None, seller_text)
+
+                # ⬇️⬇️⬇️ ФОРМИРУЕМ СООБЩЕНИЕ ДЛЯ ПОКУПАТЕЛЯ ⬇️⬇️⬇️
                 buyer_text = get_text(user_id, 'buyer_joined_buyer', users).format(
                     deal_id=deal_id[:8],
                     seller=users[deal['seller_id']]['username'],
@@ -480,11 +481,30 @@ def _handle_start_impl(message):
                     amount=deal['amount'],
                     currency=deal['currency']
                 )
+                
                 keyboard = InlineKeyboardMarkup(row_width=1)
-                keyboard.add(InlineKeyboardButton(get_text(user_id, 'btn_pay_balance', users), callback_data=f'pay_balance_{deal_id}'))
-                keyboard.add(InlineKeyboardButton(get_text(user_id, 'btn_open_dispute', users), callback_data=f'dispute_{deal_id}'))
-                keyboard.add(InlineKeyboardButton(get_text(user_id, 'btn_back_menu', users), callback_data='main_menu'))
-                send_photo_message(user_id, None, buyer_text, keyboard)
+                keyboard.add(
+                    InlineKeyboardButton(get_text(user_id, 'btn_pay_balance', users), callback_data=f'pay_balance_{deal_id}')
+                )
+                keyboard.add(
+                    InlineKeyboardButton(get_text(user_id, 'btn_open_dispute', users), callback_data=f'dispute_{deal_id}')
+                )
+                keyboard.add(
+                    InlineKeyboardButton(get_text(user_id, 'btn_back_menu', users), callback_data='main_menu')
+                )
+
+                # ⬇️⬇️⬇️ ОТПРАВЛЯЕМ ПОКУПАТЕЛЮ ⬇️⬇️⬇️
+                try:
+                    send_photo_message(user_id, None, buyer_text, keyboard)
+                    print(f"✅ Сообщение отправлено покупателю {user_id}")
+                except Exception as e:
+                    print(f"❌ Ошибка send_photo_message: {e}")
+                    # Если фото не отправляется — шлём обычным текстом
+                    try:
+                        bot.send_message(user_id, buyer_text, parse_mode='HTML', reply_markup=keyboard)
+                        print(f"✅ Текстовое сообщение отправлено покупателю {user_id}")
+                    except Exception as e2:
+                        print(f"❌ И текст не отправился: {e2}")
                 return
 
         else:
@@ -492,6 +512,7 @@ def _handle_start_impl(message):
                 referrer_id = int(ref_or_deal)
             except:
                 referrer_id = None
+    
     init_user(user_id, referrer_id)
     welcome_text, keyboard = main_menu(user_id)
     send_photo_message(message.chat.id, None, welcome_text, keyboard)
