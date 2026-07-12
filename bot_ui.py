@@ -923,20 +923,20 @@ def show_user_profile(user_id, chat_id, message_id=None):
 
     profile_text = f"""<b><tg-emoji emoji-id='5422413610112549614'>🏆</tg-emoji> Профиль Playerok Gifts</b>
 
-<tg-emoji emoji-id='5449648985578945152'>👤</tg-emoji> <b>Имя:</b> {username_display}
-<tg-emoji emoji-id='5449648985578945152'>⭐️</tg-emoji> <b>Рейтинг:</b> {user['rating']}/5.0
-<tg-emoji emoji-id='5449648985578945152'>✅</tg-emoji> <b>Успешных сделок:</b> {user['success_deals']} <b>Споров выиграно:</b> {user['disputes_won']}
-<tg-emoji emoji-id='5449648985578945152'>📊</tg-emoji> <b>Активных сделок:</b> {len(active_deals)}
+<tg-emoji emoji-id='5258192778180984895'>👤</tg-emoji> <b>Имя:</b> {username_display}
+<tg-emoji emoji-id='5404419114481507025'>⭐️</tg-emoji> <b>Рейтинг:</b> {user['rating']}/5.0
+<tg-emoji emoji-id='5420380845041025879'>✅</tg-emoji> <b>Успешных сделок:</b> {user['success_deals']} <b>Споров выиграно:</b> {user['disputes_won']}
+<tg-emoji emoji-id='5285041795569329475'>📊</tg-emoji> <b>Активных сделок:</b> {len(active_deals)}
 
-<b><tg-emoji emoji-id='5373097468474977960'>💰</tg-emoji> Баланс:</b>
-• <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Ton: {user['balance']['TON']}
+<b><tg-emoji emoji-id='5402426498764280452'>💰</tg-emoji> Баланс:</b>
+• <tg-emoji emoji-id='5280908091410389246'>🤑</tg-emoji> Ton: {user['balance']['TON']}
 • <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Rub: {user['balance']['RUB']}
 • <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Usd: {user['balance']['USD']}
 • <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Kzt: {user['balance']['KZT']}
 • <tg-emoji emoji-id='5415673019718714238'>🤑</tg-emoji> Uah: {user['balance']['UAH']}
 • <tg-emoji emoji-id='5415673019718714238'>🇧🇾</tg-emoji> Byn: {user['balance']['BYN']}
-• <tg-emoji emoji-id='5415673019718714238'>💎</tg-emoji> Usdt: {user['balance']['USDT']}
-• <tg-emoji emoji-id='5415673019718714238'>⭐️</tg-emoji> Stars: {user['balance']['STARS']}"""
+• <tg-emoji emoji-id='5222409116420433319'>💎</tg-emoji> Usdt: {user['balance']['USDT']}
+• <tg-emoji emoji-id='5467515585673842012'>⭐️</tg-emoji> Stars: {user['balance']['STARS']}"""
 
     keyboard = InlineKeyboardMarkup(row_width=2)
     keyboard.add(
@@ -985,19 +985,19 @@ def show_user_deals(user_id, chat_id, message_id=None):
             send_photo_message(chat_id, None, deals_text, keyboard)
         return
 
-    deals_text = "📋 <b>Ваши активные сделки</b>\n\n"
+    deals_text = "📋 <b>ВАШИ АКТИВНЫЕ СДЕЛКИ</b>\n\n"
 
     for i, (deal_id, deal) in enumerate(user_deals[:5], 1):
-        role = "🛒 Продавец" if deal['seller_id'] == user_id else "<tg-emoji emoji-id='5285041795569329475'>💰</tg-emoji> Покупатель"
+        role = "🛒 Продавец" if deal['seller_id'] == user_id else "<tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> Покупатель"
         status_icon = "🟡" if deal.get('status') == 'created' else "🟢" if deal.get('status') == 'paid' else "🔴"
 
         deals_text += f"{status_icon} <b>Сделка #{deal_id[:8]}</b>\n"
         deals_text += f"   {role}\n"
-        deals_text += f"   <tg-emoji emoji-id='5285041795569329475'>💰</tg-emoji> {deal['amount']} {deal['currency']}\n"
+        deals_text += f"   <tg-emoji emoji-id='5902056028513505203'>💰</tg-emoji> {deal['amount']} {deal['currency']}\n"
         deals_text += f"   📝 {deal.get('category', 'Товар')}: {deal['description'][:30]}...\n"
 
         if deal['seller_id'] == user_id:
-            deals_text += f"   <tg-emoji emoji-id='5285041795569329475'>👤</tg-emoji> Покупатель: "
+            deals_text += f"   <tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> Покупатель: "
             if deal.get('buyer_id'):
                 buyer_tag = get_user_tag(deal['buyer_id'])
                 deals_text += f"{buyer_tag}\n"
@@ -1005,7 +1005,7 @@ def show_user_deals(user_id, chat_id, message_id=None):
                 deals_text += "Ожидается\n"
         else:
             seller_tag = get_user_tag(deal['seller_id'])
-            deals_text += f"   <tg-emoji emoji-id='5285041795569329475'>👤</tg-emoji> Продавец: {seller_tag}\n"
+            deals_text += f"   <tg-emoji emoji-id='6041705726206808304'>👤</tg-emoji> Продавец: {seller_tag}\n"
 
         deals_text += "   ───────────────\n"
 
@@ -1032,7 +1032,7 @@ def show_stats_public(user_id, chat_id, message_id=None):
     update_user_activity(user_id)
 
     stats_text = f"""
-📊 <b>Статистика Playerok Gifts</b>
+📊 <b>СТАТИСТИКА PLAYEROK OTC</b>
 
 ⭐ <b>Наша платформа активно развивается!</b>
 <i>Присоединяйтесь к растущему сообществу</i>

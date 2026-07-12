@@ -2560,25 +2560,14 @@ def notify_admins_item_received(deal_id, seller_id):
     buyer_id = deal.get('buyer_id')
     if not buyer_id:
         return
-    
-    # Парсим ссылки из сделки
-    gift_links = deal.get('gift_links', [])
-    description = deal.get('description', '')
-    
-    if gift_links:
-        gift_link = '\n'.join(gift_links)
-    elif description:
-        gift_link = description
-    else:
-        gift_link = 'Не указан'
-    
+    gift_link = deal.get('description') if deal.get('category') == '🎁 Подарок' else None
     message = f"""
 <tg-emoji emoji-id='5778672437122045013'>📦</tg-emoji> <b>ТОВАР ПОЛУЧЕН ОТ ПРОДАВЦА</b>
 
 📋 <b>Сделка:</b> #{deal_id[:8]}
 <tg-emoji emoji-id='6032693626394382504'>👤</tg-emoji> <b>Продавец:</b> @{seller['username']}
 <tg-emoji emoji-id='5778421276024509124'>💰</tg-emoji> <b>Сумма:</b> {deal['amount']} {deal['currency']}
-<b>Гифт/Ссылка:</b> {gift_link}
+<b>Гифт:</b> {gift_link if gift_link else 'Не указан'}
 
 <b>Продавец подтвердил, что отправил товар менеджеру {MANAGER_USERNAME}</b>
 
